@@ -23,6 +23,7 @@ mkdir -p /export/usr/bin
 cd /export || exit
 
 cp /build/bubblewrap/bwrap usr/bin
+chmod 4755 usr/bin/bwrap
 
 mkdir legal
 cat > legal/bubblewrap<< EOF
