@@ -29,7 +29,7 @@ mkdir legal
 cat > legal/bubblewrap<< EOF
 Source  : $SOURCE
 Version : $VERSION
-Package : https://github.com/vmify/bubblewrap/bubblewrap/download/$TAG/bubblewrap-$ARCH-$TAG.tar.gz
+Package : https://github.com/infrastructurex/bubblewrap/bubblewrap/download/$TAG/bubblewrap-$ARCH-$TAG.tar.gz
 License :
 
 EOF
