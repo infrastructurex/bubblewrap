@@ -5,6 +5,7 @@ on:
       - '.github/workflows/build.yml'
       - 'build.sh'
       - 'Dockerfile'
+      - '*.patch'
 jobs:
   build:
     runs-on: ubuntu-latest

@@ -1,3 +1,25 @@
+diff --git a/bind-mount.c b/bind-mount.c
+index 57b4236..89a812a 100644
+--- a/bind-mount.c
++++ b/bind-mount.c
+@@ -447,7 +447,7 @@ bind_mount (int           proc_fd,
+ 
+   assert (path_equal (mount_tab[0].mountpoint, kernel_case_combination));
+   current_flags = mount_tab[0].options;
+-  new_flags = current_flags | (devices ? 0 : MS_NODEV) | MS_NOSUID | (readonly ? MS_RDONLY : 0);
++  new_flags = current_flags | (devices ? 0 : MS_NODEV) | (readonly ? MS_RDONLY : 0);
+   if (new_flags != current_flags &&
+       mount ("none", resolved_dest,
+              NULL, MS_SILENT | MS_BIND | MS_REMOUNT | new_flags, NULL) != 0)
+@@ -467,7 +467,7 @@ bind_mount (int           proc_fd,
+       for (i = 1; mount_tab[i].mountpoint != NULL; i++)
+         {
+           current_flags = mount_tab[i].options;
+-          new_flags = current_flags | (devices ? 0 : MS_NODEV) | MS_NOSUID | (readonly ? MS_RDONLY : 0);
++          new_flags = current_flags | (devices ? 0 : MS_NODEV) | (readonly ? MS_RDONLY : 0);
+           if (new_flags != current_flags &&
+               mount ("none", mount_tab[i].mountpoint,
+                      NULL, MS_SILENT | MS_BIND | MS_REMOUNT | new_flags, NULL) != 0)
 diff --git a/bubblewrap.c b/bubblewrap.c
 index e894af7..143a041 100644
 --- a/bubblewrap.c
