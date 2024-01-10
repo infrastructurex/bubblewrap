@@ -14,6 +14,7 @@ mv bubblewrap-$VERSION bubblewrap
 echo Building Bubblewrap ...
 cd /build/bubblewrap || exit
 ./configure
+patch -p1 < ../root_uid_gid.patch
 make "-j$(nproc)" || exit
 strip bwrap
 ldd bwrap
