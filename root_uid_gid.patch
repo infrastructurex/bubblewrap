@@ -1,5 +1,5 @@
 diff --git a/bubblewrap.c b/bubblewrap.c
-index e894af7..620215a 100644
+index e894af7..143a041 100644
 --- a/bubblewrap.c
 +++ b/bubblewrap.c
 @@ -326,8 +326,8 @@ usage (int ecode, FILE *out)
@@ -13,6 +13,15 @@ index e894af7..620215a 100644
             "    --hostname NAME              Custom hostname in the sandbox (requires --unshare-uts)\n"
             "    --chdir DIR                  Change directory to DIR\n"
             "    --clearenv                   Unset all environment variables\n"
+@@ -2664,7 +2664,7 @@ main (int    argc,
+   acquire_privs ();
+ 
+   /* Never gain any more privs during exec */
+-  if (prctl (PR_SET_NO_NEW_PRIVS, 1, 0, 0, 0) < 0)
++  if (real_uid != 0 && prctl (PR_SET_NO_NEW_PRIVS, 1, 0, 0, 0) < 0)
+     die_with_error ("prctl(PR_SET_NO_NEW_PRIVS) failed");
+ 
+   /* The initial code is run with high permissions
 @@ -2780,11 +2780,11 @@ main (int    argc,
    if (opt_sandbox_gid == (gid_t)-1)
      opt_sandbox_gid = real_gid;
