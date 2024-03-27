@@ -1,5 +1,5 @@
 diff --git a/bind-mount.c b/bind-mount.c
-index 57b4236..89a812a 100644
+index 2757cae..9952704 100644
 --- a/bind-mount.c
 +++ b/bind-mount.c
 @@ -447,7 +447,7 @@ bind_mount (int           proc_fd,
@@ -21,7 +21,7 @@ index 57b4236..89a812a 100644
                mount ("none", mount_tab[i].mountpoint,
                       NULL, MS_SILENT | MS_BIND | MS_REMOUNT | new_flags, NULL) != 0)
 diff --git a/bubblewrap.c b/bubblewrap.c
-index e894af7..143a041 100644
+index 9b78a9a..497274c 100644
 --- a/bubblewrap.c
 +++ b/bubblewrap.c
 @@ -326,8 +326,8 @@ usage (int ecode, FILE *out)
@@ -35,7 +35,7 @@ index e894af7..143a041 100644
             "    --hostname NAME              Custom hostname in the sandbox (requires --unshare-uts)\n"
             "    --chdir DIR                  Change directory to DIR\n"
             "    --clearenv                   Unset all environment variables\n"
-@@ -2664,7 +2664,7 @@ main (int    argc,
+@@ -2682,7 +2682,7 @@ main (int    argc,
    acquire_privs ();
  
    /* Never gain any more privs during exec */
@@ -44,7 +44,7 @@ index e894af7..143a041 100644
      die_with_error ("prctl(PR_SET_NO_NEW_PRIVS) failed");
  
    /* The initial code is run with high permissions
-@@ -2780,11 +2780,11 @@ main (int    argc,
+@@ -2798,11 +2798,11 @@ main (int    argc,
    if (opt_sandbox_gid == (gid_t)-1)
      opt_sandbox_gid = real_gid;
  
@@ -60,7 +60,7 @@ index e894af7..143a041 100644
  
    if (!opt_unshare_uts && opt_sandbox_hostname != NULL)
      die ("Specifying --hostname requires --unshare-uts");
-@@ -3237,6 +3237,18 @@ main (int    argc,
+@@ -3255,6 +3255,18 @@ main (int    argc,
          die ("creation of new user namespaces was not disabled as requested");
      }
  
