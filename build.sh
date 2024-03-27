@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-VERSION=0.8.0
+VERSION=0.9.0
 SOURCE=https://github.com/containers/bubblewrap/releases/download/v$VERSION/bubblewrap-$VERSION.tar.xz
 
 echo Downloading Bubblewrap "$VERSION" ...
@@ -16,16 +16,17 @@ cd /build/bubblewrap || exit
 
 patch -p1 < ../root_uid_gid.patch
 
-./configure
-make "-j$(nproc)" || exit
-strip bwrap
-ldd bwrap
+meson setup _builddir
+meson compile -C _builddir
+meson test -C _builddir
+strip _builddir/bwrap
+ldd _builddir/bwrap
 
 echo Packaging Bubblewrap ...
 mkdir -p /export/usr/bin
 cd /export || exit
 
-cp /build/bubblewrap/bwrap usr/bin
+cp /build/bubblewrap/_builddir/bwrap usr/bin
 chmod 4755 usr/bin/bwrap
 
 mkdir legal
