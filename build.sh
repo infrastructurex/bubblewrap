@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-VERSION=0.9.0
+VERSION=0.10.0
 SOURCE=https://github.com/containers/bubblewrap/releases/download/v$VERSION/bubblewrap-$VERSION.tar.xz
 
 echo Downloading Bubblewrap "$VERSION" ...
