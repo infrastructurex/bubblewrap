@@ -19,7 +19,7 @@ patch -p1 < ../root_uid_gid.patch
 meson setup _builddir
 meson compile -C _builddir
 meson test -C _builddir
-strip _builddir/bwrap
+strip --strip-unneeded _builddir/bwrap
 ldd _builddir/bwrap
 
 echo Packaging Bubblewrap ...
